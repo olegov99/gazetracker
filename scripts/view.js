@@ -25,7 +25,7 @@ $(document).ready(() => {
             return;
         }
 
-        eyeGazeDetector.predict(faceDetector).then(prediction => {
+        faceDetector.eyesRegionRect && eyeGazeDetector.predict(faceDetector).then(prediction => {
             const left = prediction[0] * ($('body').width() - targetSize);
             const top = prediction[1] * ($('body').height() - targetSize);
 
