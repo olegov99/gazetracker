@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    >
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge"
+    >
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+          href="./styles/checkbox.css"
+    >
+    <link rel="stylesheet"
+          href="./styles/dots.css"
+    >
+    <link rel="stylesheet"
+          href="./styles/styles.css"
+    >
+    <title>Eye Gaze Direction Estimation</title>
+</head>
+<body>
+
+
+<div class="egd-estimation__app">
+
+    <video id="webcam" width="400" height="300" autoplay muted></video>
+    <canvas id="face-landmarks" width="400" height="300"></canvas>
+
+    <div id="heatmap"></div>
+
+    <div id="dataset-dots" class="dataset-dots"></div>
+
+    <div class="egd-estimation__sidebar">
+        <div id="extend-btn" class="egd-estimation-sidebar__extend"></div>
+        <div class="egd-estimation-sidebar__content">
+
+            <div class="info-box">
+                <h3 class="info-box-header">Info Box</h3>
+                <div class="info-box-data">
+                    <div class="info-box-data-item">
+                        <div>Training objects: </div>
+                        <div id="train-num"></div>
+                    </div>
+                    <div class="info-box-data-item">
+                        <div>Validation objects: </div>
+                        <div id="val-num"></div>
+                    </div>
+                </div>
+            </div>
+
+            <button id="train-btn" class="egd-estimation-sidebar__train btn">Train</button>
+            <button id="save-dataset-btn" class="egd-estimation-sidebar__save-dataset btn">Download Dataset</button>
+            <button id="upload-dataset-btn" class="egd-estimation-sidebar__load-dataset btn">Upload Dataset</button>
+            <input id="dataset-uploader" type="file" multiple="multiple">
+            <button id="visualize-btn" class="egd-estimation-sidebar__visualize btn">Visualize</button>
+            <button id="save-model-btn" class="egd-estimation-sidebar__save-model btn">Save Model</button>
+
+            <div class="egd-estimation-sidebar__checkboxes">
+                <div class="md-checkbox">
+                    <input id="face-landmarks-checkbox" type="checkbox">
+                    <label for="face-landmarks-checkbox">Show face landmarks</label>
+                </div>
+                <div class="md-checkbox">
+                    <input id="eyes-region-checkbox" type="checkbox">
+                    <label for="eyes-region-checkbox">Highlight eyes region</label>
+                </div>
+                <div class="md-checkbox">
+                    <input id="show-heatmap-checkbox" type="checkbox">
+                    <label for="show-heatmap-checkbox">Draw heatmap</label>
+                </div>
+                <div class="md-checkbox">
+                    <input id="dataset-dots-checkbox" type="checkbox">
+                    <label for="dataset-dots-checkbox">Dataset collecting dots</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <canvas id="eyes-region" width="100" height="40"></canvas>
+
+    <div id="target"></div>
+</div>
+
+
+<script src="./lib/jquery-3.5.0.min.js"></script>
+<script src="./lib/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.js"></script>
+<script src="./lib/heatmap.js"></script>
+<script src="./scripts/face-detector-proto.js"></script>
+<script src="./scripts/dataset-proto.js"></script>
+<script src="./scripts/eye-gaze-detector-proto.js"></script>
+<script src="./scripts/webcam-proto.js"></script>
+<script src="./scripts/mouse-proto.js"></script>
+<script src="./scripts/utils.js"></script>
+<script src="./scripts/view.js"></script>
+<script src="./scripts/controller.js"></script>
+</body>
+</html>

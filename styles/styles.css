@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#heatmap {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.egd-estimation__app {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    font-family: 'Lato', sans-serif;
+    overflow: hidden;
+}
+
+.egd-estimation__sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 340px;
+    background-color: rgba(245, 246, 250,1.0);
+    box-shadow: 0 0 8px 0 rgba(47, 53, 66, 0.5);
+    transform: translate3d(-340px, 0, 0);
+    transition: 0.3s ease;
+}
+
+.egd-estimation-sidebar__extend {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: rgba(245, 246, 250,1.0);
+    right: -35px;
+    top: 50px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    box-shadow: 3px 4px 4px -2px rgba(47, 53, 66, 0.2), 3px -3px 4px -2px rgba(47, 53, 66, 0.2);
+}
+
+.egd-estimation-sidebar__content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 0;
+}
+
+.btn {
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    padding: 8px 30px;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    background-color: #fff;
+    color: #34495e;
+    cursor: pointer;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px -1px rgba(0,0,0,0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    transition: .3s ease;
+    min-width: 220px;
+}
+
+.btn:hover {
+    box-shadow: 0 2px 8px -1px rgba(0,0,0,0.5);
+}
+
+.egd-estimation__sidebar._opened {
+    transform: translate3d(0, 0, 0);
+}
+
+.egd-estimation-sidebar__checkboxes {
+    min-width: 220px;
+}
+
+.md-checkbox {
+    margin: 6px 0;
+}
+
+.info-box {
+    text-align: center;
+    margin-bottom: 10px;
+    min-width: 220px;
+}
+
+.info-box-data {
+    text-align: left;
+}
+
+.info-box-data-item {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#dataset-uploader {
+    display: none;
+}
+
+#webcam, #face-landmarks {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#eyes-region {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    transform: translateX(-50%);
+}
+
+#target {
+    background-color: rgba(39, 60, 117, 0.6);
+    position: absolute;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    transition: all 0.1s ease;
+    left: 600px;
+}
