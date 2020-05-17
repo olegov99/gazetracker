@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(document).ready(async () => {
     // Global Variables
     window.webcamElement = document.getElementById("webcam");
     window.faceLandmarksCanvas = document.getElementById("face-landmarks");
@@ -14,7 +14,7 @@ $(document).ready(() => {
 
     document.onmousemove = mouseProto.onMove.bind(mouseProto);
 
-    // eyeGazeDetector.model = await tf.loadLayersModel('./egd-model/model.json');
+    eyeGazeDetector.model = await tf.loadLayersModel('./egd-model/model.json');
 
     Promise.all([
         // faceapi.loadSsdMobilenetv1Model('./'),
