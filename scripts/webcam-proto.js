@@ -10,7 +10,16 @@ Webcam.prototype.onStream = (stream) => {
 };
 
 Webcam.prototype.startStream = () => {
-    if (navigator.getUserMedia) {
+
+    if (navigator.mediaDevices) {
+        navigator.mediaDevices.getUserMedia({
+            video: true,
+        }).then((stream) => {
+            webcamElement.srcObject = stream;
+        }).catch((err) => {
+            console.error(err);
+        });
+    } else if (navigator.getUserMedia) {
         navigator.getUserMedia(
             {video: true},
             (stream) => {
