@@ -111,6 +111,10 @@ $(document).ready(() => {
         await eyeGazeDetector.model.save('downloads://model');
     });
 
+    $("#reset-model-btn").on("click", async () => {
+        eyeGazeDetector.model = null;
+    });
+
     $('#save-dataset-btn').click(function(e) {
         const data = dataset.saveDataset();
         const json = JSON.stringify(data);

@@ -73,18 +73,13 @@ FaceDetector.prototype.captureEyesRegionImage = function() {
     });
 };
 
-FaceDetector.prototype.getEyesRegionMetaInfo = function(mirror) {
+FaceDetector.prototype.getEyesRegionMetaInfo = function() {
     let x = this.eyesRegionRect[0] + this.eyesRegionRect[2] / 2;
     let y = this.eyesRegionRect[1] + this.eyesRegionRect[3] / 2;
     x = (x / webcamElement.width) * 2 - 1;
     y = (y / webcamElement.height) * 2 - 1;
     const rectWidth = this.eyesRegionRect[2] / webcamElement.width;
     const rectHeight = this.eyesRegionRect[3] / webcamElement.height;
-
-    if (mirror) {
-        x = 1 - x;
-        y = 1 - y;
-    }
 
     return tf.tidy(
         () => tf.tensor1d([x, y, rectWidth, rectHeight]).expandDims(0)
@@ -93,9 +88,9 @@ FaceDetector.prototype.getEyesRegionMetaInfo = function(mirror) {
 
 FaceDetector.prototype.captureExample = function(dataset, mouse) {
     tf.tidy.call(this, () => {
-        const img = this.captureEyesRegionImage();
-        const mousePos = mouse.getPosition();
-        const metaInfos = tf.keep.call(this, this.getEyesRegionMetaInfo());
-        dataset.addExample(img, metaInfos, mousePos);
+        const image = this.captureEyesRegionImage();
+        const mousePosition = mouse.getPosition();
+        const metaInfo = tf.keep.call(this, this.getEyesRegionMetaInfo());
+        dataset.addExample(image, metaInfo, mousePosition);
     });
 };

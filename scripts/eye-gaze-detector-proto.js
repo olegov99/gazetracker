@@ -1,7 +1,5 @@
 function EyeGazeDetector() {
     this.model = null;
-    this.epochsTrained = 0;
-    this.isTraining = false;
 }
 
 EyeGazeDetector.prototype.createModel = function (dataset) {
@@ -76,7 +74,6 @@ EyeGazeDetector.prototype.createModel = function (dataset) {
 };
 
 EyeGazeDetector.prototype.train = async function(dataset) {
-    this.isTraining = true;
     const epochs = 15;
 
     let batchSize = Math.floor(dataset.train.num * 0.1);
@@ -85,10 +82,6 @@ EyeGazeDetector.prototype.train = async function(dataset) {
     if (this.model == null) {
         this.model = this.createModel(dataset);
     }
-
-    let bestEpoch = -1;
-    let bestTrainLoss = Number.MAX_SAFE_INTEGER;
-    let bestValLoss = Number.MAX_SAFE_INTEGER;
 
     this.model.compile({
         optimizer: tf.train.adam(0.001),
@@ -106,15 +99,6 @@ EyeGazeDetector.prototype.train = async function(dataset) {
         callbacks: {
             onEpochEnd: async function (epoch, logs) {
                 console.info('Epoch', epoch, 'losses:', logs);
-                this.epochsTrained += 1;
-
-                if (logs.val_loss < bestValLoss) {
-                    bestEpoch = epoch;
-                    bestTrainLoss = logs.loss;
-                    bestValLoss = logs.val_loss;
-
-                    // await model.cnn.save(bestModelPath);
-                }
 
                 history.push(logs);
                 await tfvis.show.history({
@@ -125,26 +109,18 @@ EyeGazeDetector.prototype.train = async function(dataset) {
 
                 return await tf.nextFrame();
             },
-            onTrainEnd: async function () {
-
-                this.epochsTrained -= epochs - bestEpoch;
-
-                // model.cnn = await tf.loadLayersModel(bestModelPath);
-
-                this.isTraining = false;
-            },
         },
     });
 };
 
 EyeGazeDetector.prototype.predict = async function(faceDetector) {
-    const rawImg = faceDetector.captureEyesRegionImage();
-    const img = await convertImage(rawImg);
-    const metaInfos = faceDetector.getEyesRegionMetaInfo();
-    const prediction = this.model.predict([img, metaInfos]);
+    const rawImage = faceDetector.captureEyesRegionImage();
+    const image = await convertImage(rawImage);
+    const metaInfo = faceDetector.getEyesRegionMetaInfo();
+    const prediction = this.model.predict([image, metaInfo]);
     const predictionData = await prediction.data();
 
-    tf.dispose([img, metaInfos, prediction]);
+    tf.dispose([image, metaInfo, prediction]);
 
     return [predictionData[0] + 0.5, predictionData[1] + 0.5];
 };

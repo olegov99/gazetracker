@@ -1,7 +1,7 @@
-function rgbToGrayscale(imgArray, n, x, y) {
-    let r = (imgArray[n][x][y][0] + 1) / 2;
-    let g = (imgArray[n][x][y][1] + 1) / 2;
-    let b = (imgArray[n][x][y][2] + 1) / 2;
+function rgbToGrayscale(imageArray, n, x, y) {
+    let r = (imageArray[n][x][y][0] + 1) / 2;
+    let g = (imageArray[n][x][y][1] + 1) / 2;
+    let b = (imageArray[n][x][y][2] + 1) / 2;
 
     const exponent = 1 / 2.2;
     r = Math.pow(r, exponent);
