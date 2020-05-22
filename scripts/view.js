@@ -66,12 +66,12 @@ $(document).ready(() => {
 
     // Dataset collecting dots checkbox
     $datasetDotsCheckbox = $('#dataset-dots-checkbox');
-    !$datasetDotsCheckbox.checked && $('#dataset-dots').css("opacity", "0");
+    !$datasetDotsCheckbox.checked && $('#dots-grid').css("opacity", "0");
     $datasetDotsCheckbox.change(function() {
         if (this.checked) {
-            $('#dataset-dots').css("opacity", "1");
+            $('#dots-grid').css("opacity", "1");
         } else {
-            $('#dataset-dots').css("opacity", "0");
+            $('#dots-grid').css("opacity", "0");
         }
     });
 
