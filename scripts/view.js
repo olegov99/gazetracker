@@ -7,10 +7,9 @@ $(document).ready(() => {
         e.preventDefault();
     });
 
+    // Creating dots grid for collecting dataset
     for (let i = 1; i <= 50; i++) {
-        $('<div/>', {
-            class: `dot dot-${i}`
-        }).appendTo('#dataset-dots');
+        $('<div class="box"><div class="dot"></div></div>').appendTo('#dots-grid');
     }
 
     $('#train').click(function(e) {
