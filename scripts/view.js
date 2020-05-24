@@ -2,7 +2,7 @@ $(document).ready(() => {
 
     tfvis.visor().close();
 
-    $('#dataset-dots').click(function(e) {
+    $('#dots-grid').click(function(e) {
         faceDetector.captureExample(dataset, mouseProto);
         e.preventDefault();
     });
@@ -65,7 +65,7 @@ $(document).ready(() => {
     });
 
     // Dataset collecting dots checkbox
-    $datasetDotsCheckbox = $('#dataset-dots-checkbox');
+    $datasetDotsCheckbox = $('#dots-grid-checkbox');
     !$datasetDotsCheckbox.checked && $('#dots-grid').css("opacity", "0");
     $datasetDotsCheckbox.change(function() {
         if (this.checked) {

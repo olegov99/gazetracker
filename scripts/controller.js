@@ -14,7 +14,7 @@ $(document).ready(async () => {
 
     document.onmousemove = mouseProto.onMove.bind(mouseProto);
 
-    eyeGazeDetector.model = await tf.loadLayersModel('./egd-model/model.json');
+    eyeGazeDetector.model = await tf.loadLayersModel('./5k-model/model.json');
 
     Promise.all([
         // faceapi.loadSsdMobilenetv1Model('./'),

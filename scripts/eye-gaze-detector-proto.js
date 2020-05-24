@@ -111,6 +111,10 @@ EyeGazeDetector.prototype.train = async function(dataset) {
             },
         },
     });
+
+    // const res = this.model.evaluate(dataset.val.x, dataset.val.y, {batchSize: 4});
+    // res[0].print();
+    // res[1].print();
 };
 
 EyeGazeDetector.prototype.predict = async function(faceDetector) {
